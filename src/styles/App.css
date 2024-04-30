@@ -1,0 +1,32 @@
+@import url("https://fonts.googleapis.com/css?family=Google+Sans:400,500,600");
+@import url("./Dropdown.css");
+@import url("./Header.css");
+@import url("./StarRating.css");
+@import url("./StationCard.css");
+@import url("./StationDetails.css");
+
+body {
+  margin: 0;
+  background-color: lightgray;
+}
+
+.main-container {
+  display: flex;
+  flex-direction: column;
+  font-family: "Google Sans";
+  font-size: 16px;
+  height: 100vh;
+  margin: 0 auto;
+  max-height: 823px;
+  max-width: 411px;
+  outline: 1px solid black;
+  width: 100%;
+}
+
+.station-container {
+  align-items: stretch;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  height: 100%;
+}

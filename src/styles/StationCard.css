@@ -1,0 +1,76 @@
+.station-image {
+  background-color: #d8e5ee;
+  width: 100px;
+  height: 100px;
+  margin-right: 20px;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  flex-grow: 1;
+}
+
+.station-card {
+  background-color: white;
+  cursor: pointer;
+  padding: 15px;
+  border-radius: 6px;
+  width: auto;
+  margin: 15px;
+}
+
+.station-description {
+  display: flex;
+  width: 60%;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.station-info {
+  display: flex;
+}
+
+h3,
+p {
+  margin: 0;
+}
+
+.station-name {
+  font-size: 18px;
+  font-weight: 900;
+  margin-bottom: 4px;
+}
+
+.station-address,
+.station-types {
+  color: rgb(130, 130, 130);
+  font-size: 12px;
+}
+
+.station-types .selected {
+  color: rgb(206 54 54);
+  font-size: 14px;
+  font-weight: 900;
+}
+
+.station-specs {
+  align-items: center;
+  background-color: #edf5fa;
+  color: rgb(84, 74, 74);
+  display: flex;
+  flex-direction: column;
+  margin-top: 16px;
+  padding: 4px 8px;
+}
+
+.station-specs label {
+  font-size: 14px;
+  font-style: italic;
+  font-weight: 900;
+  color: inherit;
+}
+
+img {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+}
