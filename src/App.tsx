@@ -39,11 +39,6 @@ const App = () => {
     };
   }, [sortProperty]);
 
-  // useEffect(() => {
-  //   console.log(stations)
-
-  // }, [stations])
-
   useEffect(() => {
     sortStations()
   }, [sortProperty, sortStations])
