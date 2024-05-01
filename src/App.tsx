@@ -37,7 +37,7 @@ const App = () => {
       });
       setStations(sortedStations);
     };
-  }, [stations, sortProperty]);
+  }, [sortProperty]);
 
   // useEffect(() => {
   //   console.log(stations)
