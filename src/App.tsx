@@ -4,44 +4,22 @@ import StationCard from "./components/StationCard";
 import StationDetails from "./components/StationDetails";
 import { typeOptions } from "./data/constants";
 import fetchSearchResults from "./helpers/fetchResults";
+import { Station } from "./types"; // Assuming you have a types file defining Station type
 
-
-const App = () => {
-  const [stations, setStations] = useState([]);
-  const [chargeId, setChargeId] = useState(0);
-  const [selectedStation, setSelectedStation] = useState(null);
-  const [sortProperty, setSortProperty] = useState(0); 
+const App: React.FC = () => {
+  const [stations, setStations] = useState<Station[]>([]);
+  const [chargeId, setChargeId] = useState<number>(0);
+  const [selectedStation, setSelectedStation] = useState<Station | null>(null);
+  const [sortProperty, setSortProperty] = useState<number>(0);
 
   useEffect(() => {
     const loadStations = async () => {
-      const stations = await fetchSearchResults(chargeId);
-      setStations(stations.stations);
+      const stationsData = await fetchSearchResults(chargeId, sortProperty);
+      setStations(stationsData.stations);
     };
 
     loadStations();
-  }, [chargeId]);
-
-
-  const sortStations = useMemo(() => {
-    return () => {
-      const sortedStations = [...stations].sort((a, b) => {
-        if (sortProperty === 0) {
-          return a.distance - b.distance;
-        } else if (sortProperty === 1) {
-          return a.name.localeCompare(b.name);
-        } else if (sortProperty === 2) {
-          return b.rating - a.rating;
-        } else if (sortProperty === 3) {
-          return a.price - b.price;
-        }
-      });
-      setStations(sortedStations);
-    };
-  }, [sortProperty]);
-
-  useEffect(() => {
-    sortStations()
-  }, [sortProperty, sortStations])
+  }, [chargeId, sortProperty]);
 
   const handleSortChange = useCallback((selectedSortProperty: number) => {
     setSortProperty(selectedSortProperty);
@@ -63,17 +41,15 @@ const App = () => {
           onResetSort={resetSort}
         />
         <div className="station-container">
-          {stations?.length > 0 ? (
-            stations.map((station) => {
-              return (
-                <StationCard
-                  onClick={() => setSelectedStation(station)}
-                  key={station.id}
-                  filterOption={typeOptions[chargeId]}
-                  station={station}
-                />
-              );
-            })
+          {stations.length > 0 ? (
+            stations.map((station) => (
+              <StationCard
+                onClick={() => setSelectedStation(station)}
+                key={station.id}
+                filterOption={typeOptions[chargeId]}
+                station={station}
+              />
+            ))
           ) : (
             <h2>No results to show.</h2>
           )}
@@ -82,7 +58,7 @@ const App = () => {
     );
   };
 
-  const renderStationDetails = (station: any) => {
+  const renderStationDetails = (station: Station) => {
     return (
       <StationDetails
         onBackClick={() => setSelectedStation(null)}

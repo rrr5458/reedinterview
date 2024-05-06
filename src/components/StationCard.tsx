@@ -3,7 +3,7 @@
  */
 
 import sortTypes from "../helpers/sortTypes";
-import {Station} from "../types";
+import { Station } from "../types";
 import StarRating from "./StarRating";
 
 interface StationCardProps {
@@ -12,7 +12,7 @@ interface StationCardProps {
   onClick: () => void;
 }
 
-const StationCard = ({ station, filterOption, onClick }: StationCardProps) => {
+const StationCard: React.FC<StationCardProps> = ({ station, filterOption, onClick }: StationCardProps) => {
   const { name, address, image, price, rating, types, distance } = station;
   const sortedTypes = sortTypes(types, filterOption);
 

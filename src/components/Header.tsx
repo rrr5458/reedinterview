@@ -1,9 +1,5 @@
 import Dropdown from "./Dropdown";
 
-/**
- * Renders a header element.
- */
-
 interface HeaderProps {
   typeOptions: string[];
   setChargeId: (chargeId: number) => void;
@@ -13,19 +9,21 @@ interface HeaderProps {
   onResetSort: () => void;
 }
 
-const Header = ({
+const Header: React.FC<HeaderProps> = ({
   typeOptions,
   chargeId,
   sortProperty,
   onSortChange,
+  onResetSort,
   setChargeId,
 }: HeaderProps) => {
   const onResetClick = () => {
+    onResetSort(); 
     setChargeId(0);
   };
 
-  const handleSortChange = (value: any) => {
-    onSortChange(value);
+  const handleSortChange = (value: number) => {
+    onSortChange(value); 
   };
 
   return (
@@ -43,7 +41,6 @@ const Header = ({
           value={sortProperty}
           setSelected={handleSortChange}
           label="Sort By"
-
           options={["distance", "name", "rating", "price"]}
         />
       </div>

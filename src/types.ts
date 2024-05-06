@@ -8,3 +8,8 @@ export interface Station {
   types: string;
   image: string;    
 }
+
+export type StationData = {
+  stations: Station[];
+
+}
